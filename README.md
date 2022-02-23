@@ -13,9 +13,9 @@ This is a fork of https://github.com/NicolasOmar/AltaCV with some additions and 
     Svensk text
   }
 ``` 
-to create a translated version of your resume. Then use the build script to create both versions
+to create a translated version of your resume. Then run the build script to compile both versions
 
-2. Added a build script `build.py` that outputs both versions of your resume, and adds it to the `/snapshots` folder. Everytime you run the script, two new versions are added to the folder with the date of today, so you can keep track of older versions of your resume.
+2. Added a build script `build.py` that outputs both versions of your resume, and adds it to the `/snapshots` folder. Everytime you run the script, two new versions are added to the folder with today's date, so you can keep track of older versions of your resume.
 To run it, install `python` and then run 
 ```bash 
   py .\build.py
