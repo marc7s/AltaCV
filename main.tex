@@ -63,6 +63,7 @@
   \definecolor{BodyColor}{HTML}{ABABAB}
   \definecolor{EmphasisColor}{HTML}{ABA2A2}
   \definecolor{BackgroundColor}{HTML}{242424}
+  \definecolor{AboutColor}{HTML}{ABABAB}
 \else%
   \definecolor{PrimaryColor}{HTML}{001F5A}
   \definecolor{SecondaryColor}{HTML}{0039AC}
@@ -70,16 +71,19 @@
   \definecolor{BodyColor}{HTML}{666666}
   \definecolor{EmphasisColor}{HTML}{2E2E2E}
   \definecolor{BackgroundColor}{HTML}{E2E2E2}
+  \definecolor{AboutColor}{HTML}{222222}
 \fi%
 
 \colorlet{name}{PrimaryColor}
 \colorlet{tagline}{PrimaryColor}
+\colorlet{about}{AboutColor}
 \colorlet{heading}{PrimaryColor}
 \colorlet{headingrule}{ThirdColor}
 \colorlet{subheading}{SecondaryColor}
 \colorlet{accent}{SecondaryColor}
 \colorlet{emphasis}{EmphasisColor}
 \colorlet{body}{BodyColor}
+\colorlet{hyperlink}{PrimaryColor}
 \pagecolor{BackgroundColor}
 
 % Change some fonts, if necessary
@@ -96,17 +100,23 @@
 %% sample.bib contains your publications
 %% \addbibresource{sample.bib}
 
+%% [marc7s]: Multi language CV
+% Change the language used in this file. 
+% Use `\entrue` or `\svtrue` for English/Swedish
+% Put in separate file for build script
+\input{build_lang.tex}
+
 \begin{document}
     \name{John Doe}
-    \tagline{Test Developer}
+    \tagline{\en{Test Developer}\sv{Testutvecklare}}
     %% You can add multiple photos on the left or right
     \photoL{4cm}{john-doe}
     
     \personalinfo{
         \email{john_doe@email.com}\smallskip
         \phone{+01-2345-678901}
-        \location{City, Country}\\
-        \linkedin{johnDoe}
+        \location{\en{City, Country}\sv{Stad, Land}}\\
+        \linkedin{John Doe}{johnDoe}
         \github{johnDoe}
         \dev{johnDoe}
         %\homepage{nicolasomar.me}
@@ -126,14 +136,14 @@
     %% Depending on your tastes, you may want to make fonts of itemize environments slightly smaller
     % \AtBeginEnvironment{itemize}{\small}
     
-    %% Set the left/right column width ratio to 6:4.
-    \columnratio{0.25}
+    %% Set the left/right column width ratio
+    \columnratio{0.26}
 
     % Start a 2-column paracol. Both the left and right columns will automatically
     % break across pages if things get too long.
     \begin{paracol}{2}
         % ----- STRENGTHS -----
-        \cvsection{Strengths}
+        \cvsection{\en{Strengths}\sv{Styrkor}}
             \cvtag{One}
             \cvtag{Two}
             \cvtag{Three}
@@ -154,8 +164,8 @@
             \cvtag{Orange}
         % ----- STRENGTHS -----
         
-        % ----- LEARNING -----
-        \cvsection{Learning}
+        % ----- CODING -----
+        \cvsection{\en{Coding}\sv{Programspråk}}
             \cvtag{Uno}
             \cvtag{Dos}
             \cvtag{Tres}
@@ -178,14 +188,14 @@
             \cvtag{Blanco}
             \cvtag{Gris}
             \cvtag{Negro}
-        % ----- LEARNING -----
+        % ----- CODING -----
         
         % ----- LANGUAGES -----
-        \cvsection{Languages}
-            \cvlang{Lang 1}{Native}\\
+        \cvsection{\en{Languages}\sv{Språk}}
+            \cvlang{\en{Lang 1}\sv{Språk 1}}{\en{Native}\sv{Modersmål}}\\
             \divider
             
-            \cvlang{Lang 2}{Basic / A2}
+            \cvlang{\en{Lang 2}\sv{Språk 2}}{\en{Proficient / C2}\sv{Flytande / C2}}
             %% Yeah I didn't spend too much time making all the
             %% spacing consistent... sorry. Use \smallskip, \medskip,
             %% \bigskip, \vpsace etc to make ajustments.
@@ -193,14 +203,14 @@
         % ----- LANGUAGES -----
             
         % ----- REFERENCES -----
-        \cvsection{References}
-            \cvref{Ref 1}{ref-1}
+        \cvsection{\en{References}\sv{Referenser}}
+            \linkedin{Ref 1}{ref-1}
             \divider
             
-            \cvref{Ref 2}{ref-2}
+            \linkedin{Ref 2}{ref-2}
             \divider
             
-            \cvref{Ref 3}{ref-3}
+            \linkedin{Ref 3}{ref-3}
             \smallskip
         % ----- REFERENCES -----
         
@@ -236,58 +246,116 @@
         \switchcolumn
         
         % ----- ABOUT ME -----
-        \cvsection{About Me}
+        \cvsection{\en{About Me}\sv{Om mig}}
             \begin{quote}
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                \en{
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                }
+                \sv{
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                }
             \end{quote}
         % ----- ABOUT ME -----
         
         % ----- EXPERIENCE -----
-        \cvsection{Experience}
-            \cvevent{Charge }{| Company}{Mm YYYY -- Mm YYYY}{City, Country}
-            \begin{itemize}
-                \item First item
-                \item Second item
-                \item Third item
-            \end{itemize}
+        \cvsection{\en{Experience}\sv{Erfarenhet}}
+            \cvevent{\en{Charge}\sv{Befattning}}{| \en{Company}\sv{Företag}}{Mm YYYY -- Mm YYYY}{\en{City, Country}\sv{Stad, Land}}
+            \en{
+                \begin{itemize}
+                    \item First item
+                    \item Second item
+                    \item Third item
+                \end{itemize}
+            }
+            \sv{
+                \begin{itemize}
+                    \item Punkt 1
+                    \item Punkt 2
+                    \item Punkt 3
+                \end{itemize}
+            }
             \divider
             
-            \cvevent{Charge }{| Company}{Mm YYYY -- Mm YYYY}{City, Country}
-            \begin{itemize}
-                \item First item
-                \item Second item
-                \item Third item
-            \end{itemize}
+            \cvevent{\en{Charge}\sv{Befattning}}{| \en{Company}\sv{Företag}}{Mm YYYY -- Mm YYYY}{\en{City, Country}\sv{Stad, Land}}
+            \en{
+                \begin{itemize}
+                    \item First item
+                    \item Second item
+                    \item Third item
+                \end{itemize}
+            }
+            \sv{
+                \begin{itemize}
+                    \item Punkt 1
+                    \item Punkt 2
+                    \item Punkt 3
+                \end{itemize}
+            }
         % ----- EXPERIENCE -----
         
         % ----- EDUCATION -----
-        \cvsection{Education}
-            \cvevent{Title }{| Institution}{Mm YYYY -- Mm YYYY}{City, Country}
-            \begin{itemize}
-                \item GPA: 1,23
-            \end{itemize}
+        \cvsection{\en{Education}\sv{Utbildning}}
+            \cvevent{\en{Title}\sv{Titel}}{| Institution}{Mm YYYY -- Mm YYYY}{\en{City, Country}\sv{Stad, Land}}
+            \en{
+                Attended \link{University}{https://university.com}
+                \smallskip
+                \begin{itemize}
+                    \item GPA: 1,23
+                \end{itemize}
+            }
+            \sv{
+                Gick på \link{Universitet}{https://universitet.se}
+                \smallskip
+                \begin{itemize}
+                    \item Betygssnitt: 1,23
+                \end{itemize}
+            }
             \divider
             
-            \cvevent{Title }{| Institution}{Mm YYYY -- Mm YYYY}{City, Country}
-            \begin{itemize}
-                \item GPA: 1,23
-            \end{itemize}
+            \cvevent{\en{Title}\sv{Titel}}{| Institution}{Mm YYYY -- Mm YYYY}{\en{City, Country}\sv{Stad, Land}}
+            \en{
+                \begin{itemize}
+                    \item GPA: 1,23
+                \end{itemize}
+            }
+            \sv{
+                \begin{itemize}
+                    \item Betygssnitt: 1,23
+                \end{itemize}
+            }
         % ----- EDUCATION -----
         
         % ----- PROJECTS -----
-        \cvsection{Projects}
-            \cvevent{Project 1 }{\cvrepo{| \faGithub}{https://github.com/user/repo}\cvrepo{| \faGlobe}{https://repo-demo.com/}}{Mm YYYY -- Mm YYYY}{}
-            \begin{itemize}
-                \item Item 1
-                \item Item 2
-            \end{itemize}
+        \cvsection{\en{Projects}\sv{Projekt}}
+            \cvevent{\en{Project 1}\sv{Projekt 1}}{\cvrepo{| \faGithub}{https://github.com/user/repo}\cvrepo{| \faGlobe}{https://repo-demo.com/}}{Mm YYYY -- Mm YYYY}{}
+            \en{
+                \begin{itemize}
+                    \item Item 1
+                    \item Item 2
+                \end{itemize}
+            }
+            \sv{
+                \begin{itemize}
+                    \item Punkt 1
+                    \item Punkt 2
+                \end{itemize}
+            }
             \divider
             
-            \cvevent{Project 1 }{\cvrepo{| \faGitlab}{https://gitlab.com/user/repo}\cvrepo{| \faGlobe}{https://repo-demo.com/}}{Mm YYYY -- Mm YYYY}{}
-            \begin{itemize}
-                \item Item 1
-                \item Item 2
-            \end{itemize}
+            \cvevent{\en{Project 2}\sv{Projekt 2}}{\cvrepo{| \faGitlab}{https://gitlab.com/user/repo}\cvrepo{| \faGlobe}{https://repo-demo.com/}}{Mm YYYY -- Mm YYYY}{}
+            \en{
+                \begin{itemize}
+                    \item Item 1
+                    \item Item 2
+                \end{itemize}
+            }
+            \sv{
+                \begin{itemize}
+                    \item Punkt 1
+                    \item Punkt 2
+                \end{itemize}
+            }
+            
         % ----- PROJECTS -----
     \end{paracol}
 \end{document}

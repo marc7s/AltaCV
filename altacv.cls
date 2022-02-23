@@ -109,7 +109,12 @@
 % \RequirePackage{marginfix}
 
 \setlength{\parindent}{0pt}
-\newcommand{\divider}{\textcolor{body!30}{\hdashrule{\linewidth}{0.6pt}{0.5ex}}\medskip}
+% [marc7s]: Updated divider default space and added support for custom spacing
+\newcommand{\divider}[1][0.3cm]{
+    \vspace{\dimexpr-\parskip-\baselineskip+#1}
+    \noindent\textcolor{body!30}{\hdashrule{\linewidth}{0.6pt}{0.5ex}}\par
+    \vspace{\dimexpr-\parskip-.5\baselineskip+#1}
+    }
 
 \newenvironment{fullwidth}{%
   \begin{adjustwidth}{}{\dimexpr-\marginparwidth-\marginparsep\relax}}
@@ -187,12 +192,12 @@
 \newcommand{\name}[1]{\def\@name{#1}}
 \newcommand{\tagline}[1]{\def\@tagline{#1}}
 \newcommand{\personalinfo}[1]{\def\@personalinfo{#1}}
+\newcommand{\linkedin}[2]{\printinfo{\faLinkedin}{#1}[https://linkedin.com/in/#2]} % [marc7s]: Custom LinkedIn cmd that allows custom link text
 \NewInfoField{email}{\faAt}[mailto:]
 \NewInfoField{mailaddress}{\faEnvelope}
 \NewInfoField{phone}{\faPhone}[tel:]
 \NewInfoField{homepage}{\faGlobe}[https://]
 \NewInfoField{twitter}{\faTwitter}[https://twitter.com/]
-\NewInfoField{linkedin}{\faLinkedin}[https://linkedin.com/in/]
 \NewInfoField{github}{\faGithub}[https://github.com/]
 % v1.?? Use fontawesome5 for Orcid symbol
 \NewInfoField{orcid}{\faOrcid}[https://orcid.org/]
@@ -265,7 +270,7 @@
   \endgroup\medskip
 }
 
-\renewenvironment{quote}{\color{accent}\itshape\large}{\par}
+\renewenvironment{quote}{\color{about}\large}{\par} % [marc7s] Removed italics, changed color reference
 
 % Fork: Two bigskip tags added for better section separation
 \newcommand{\cvsection}[2][]{%
@@ -410,4 +415,17 @@
   \pagestyle{empty}
   \color{body}
   \raggedright
+}
+
+% --- [marc7s]: Support for multiple languages --- %
+\newif\ifen
+\newif\ifsv
+
+\newcommand{\en}[1]{\ifen#1\fi}
+\newcommand{\sv}[1]{\ifsv#1\fi}
+% --- [marc7s]: Support for multiple languages --- %
+
+% [marc7s]: Added link command with support for different display text
+\newcommand{\link}[2]{
+  \textcolor{hyperlink}{\href{#2}{#1}}
 }
