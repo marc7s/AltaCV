@@ -2,8 +2,7 @@
 Before running the build script, open it and edit the commented values in the top of the file: `output_dir` and `output_name` are required, `date_f` is optional. Read more about the build script in the following section
 
 ## Forked additions
-This is a fork of `https://github.com/NicolasOmar/AltaCV` with some additions and changes I wanted.
-I have made the following changes:
+This is a fork of https://github.com/NicolasOmar/AltaCV with some additions and changes I wanted. See samples in the `/snapshots` folder. I have made the following changes:
 
 1. Added dual language support. Use 
 ```latex
