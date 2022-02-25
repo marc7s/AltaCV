@@ -41,21 +41,65 @@ def build_prep(lang):
     elif lang == "SV":
         f.write("\svtrue")
 
+def rename_action_overwrite():
+    print("Output file already exists, do you wish to overwrite? yes/no")
+    while True:
+        ans = str(input(">")).lower().strip()
+        if ans in ["y", "yes"]:
+            return True
+        elif ans in ["n", "no"]:
+            return False
+        print("Unknown answer, enter yes/no")
+
+def get_output_name(file, i):
+    file_split = os.path.splitext(file)
+    file_name = file_split[0]
+    file_ext = file_split[1]
+    return f"{file_name}-{i}{file_ext}"
+
+def get_next_free_name_index(file):
+    i = 2
+    while exists(get_output_name(file, i)):
+        i = i + 1
+    return i
+
 def rename_files():
+    date = datetime.now().date()
+    dateF = f"{date:%Y-%m-%d}"
+
     temp_en_file = os.path.join(output_dir, f"{temp_file_en}.pdf")
     temp_sv_file = os.path.join(output_dir, f"{temp_file_sv}.pdf")
 
+    output_en_name = os.path.join(output_dir, f"{output_name}_EN.pdf")
+    output_sv_name = os.path.join(output_dir, f"{output_name}_SV.pdf")
+
+    if exists(output_en_name) or exists(output_sv_name):
+        overwrite = rename_action_overwrite()
+        if overwrite:
+            if exists(output_en_name):
+                print("Deleting EN file...")
+                os.remove(output_en_name)
+            if exists(output_sv_name):
+                print("Deleting SV file...")
+                os.remove(output_sv_name)
+        else:
+            en_index = get_next_free_name_index(output_en_name)
+            sv_index = get_next_free_name_index(output_sv_name)
+            index = max(en_index, sv_index)
+            output_en_name = get_output_name(output_en_name, index)
+            output_sv_name = get_output_name(output_sv_name, index)
+
     if exists(temp_en_file):
         print("Temp EN file found, renaming...")
-        os.rename(temp_en_file, os.path.join(output_dir, f"{output_name}_EN.pdf"))
+        os.rename(temp_en_file, output_en_name)
 
     if exists(temp_sv_file):
         print("Temp SV file found, renaming...")
-        os.rename(temp_sv_file, os.path.join(output_dir, f"{output_name}_SV.pdf"))
+        os.rename(temp_sv_file, output_sv_name)
 
 # Main program
-build_prep("SV")
-build(temp_file_sv)
 build_prep("EN")
+build(temp_file_sv)
+build_prep("SV")
 build(temp_file_en)
 rename_files()
