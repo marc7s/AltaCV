@@ -64,9 +64,6 @@ def get_next_free_name_index(file):
     return i
 
 def rename_files():
-    date = datetime.now().date()
-    dateF = f"{date:%Y-%m-%d}"
-
     temp_en_file = os.path.join(output_dir, f"{temp_file_en}.pdf")
     temp_sv_file = os.path.join(output_dir, f"{temp_file_sv}.pdf")
 
