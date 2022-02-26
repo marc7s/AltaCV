@@ -96,7 +96,7 @@ def rename_files():
 
 # Main program
 build_prep("EN")
-build(temp_file_sv)
-build_prep("SV")
 build(temp_file_en)
+build_prep("SV")
+build(temp_file_sv)
 rename_files()
