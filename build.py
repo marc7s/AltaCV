@@ -3,15 +3,15 @@ from datetime import datetime
 import os
 from os.path import exists
 
-main_file = "main.tex"
-build_lang = "build_lang.tex"
-temp_file_prefix = "CV_TEMP"
+main_file = r"main.tex"
+build_lang = r"build_lang.tex"
+temp_file_prefix = r"CV_TEMP"
 temp_file_sv = f"{temp_file_prefix}_SV"
 temp_file_en = f"{temp_file_prefix}_EN"
 date = datetime.now().date()
 
 # FORK - REQUIRED - Change this to the correct path
-output_dir = "C:\AltaCV\snapshots"
+output_dir = r"C:\AltaCV\snapshots"
 
 # FORK: - OPTIONAL - Change this date format if you would like
 date_f = f"{date:%Y-%m-%d}"
